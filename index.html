@@ -516,11 +516,11 @@ function end(){if(y0!==null&&pull>TH){ind.style.opacity=1;ind.style.transform=''
 document.addEventListener('touchend',end,{passive:true});document.addEventListener('touchcancel',end,{passive:true})})();</script>
 <script>(function(){
 var CATS=[['back','Спина и поясница','приседания → «колодец», становая и тяги в наклоне заменяются']];
-var RX={back:/присед|станов|румынск|мёртвая тяга|в наклоне/i};
+var RX={back:/присед|станов|в наклоне/i};
 function L(){if(!S.lim)S.lim={c:[],x:[]};return S.lim}
 function catBan(n){var l=S.lim;if(!l||/колодец/i.test(n))return false;for(var i=0;i<l.c.length;i++)if(RX[l.c[i]]&&RX[l.c[i]].test(n))return true;return false}
 function banned(n){var l=S.lim;if(!l)return false;return l.x.indexOf(n)>=0||catBan(n)}
-function sub(n){if(!catBan(n)||S.lim.x.indexOf(n)>=0)return null;var t=/присед/i.test(n)?'Приседания «колодец»':/румынск|станов/i.test(n)?'Сгибание ног':/в наклоне/i.test(n)?'Горизонтальная тяга с опорой':null;return t&&!banned(t)?t:null}
+function sub(n){if(!catBan(n)||S.lim.x.indexOf(n)>=0)return null;var t=/присед/i.test(n)?'Приседания «колодец»':/станов/i.test(n)?'Сгибание ног':/в наклоне/i.test(n)?'Горизонтальная тяга с опорой':null;return t&&!banned(t)?t:null}
 window.exBanned=banned;
 function names(){var m={};function add(n){if(n)m[n]=1}
 [LIB,LIBW].forEach(function(o){for(var g in o){o[g].b.forEach(function(x){add(x[0])});o[g].e.forEach(function(x){add(x[0])})}});
@@ -531,10 +531,7 @@ function cnt(){var l=S.lim;if(!l)return 0;return names().filter(banned).length}
 function build(){var box=document.getElementById('lim');if(!box)return;var l=L();
 var h='<div style="font-weight:600;margin:16px 0 0">Травмы и ограничения</div><div class="bkm">Отмеченное пропадёт из твоих тренировок.</div>';
 CATS.forEach(function(c){h+='<label style="display:flex;gap:10px;align-items:flex-start;margin:8px 0;cursor:pointer"><input type="checkbox" data-c="'+c[0]+'"'+(l.c.indexOf(c[0])>=0?' checked':'')+' style="width:20px;height:20px;margin:1px 0 0;flex:none"><span><b style="font-weight:600">'+c[1]+'</b><br><span class="meta">'+c[2]+'</span></span></label>'});
-h+='<details style="margin-top:8px"><summary style="cursor:pointer;font-weight:600;font-size:14px;padding:6px 0">Отдельные упражнения</summary><div style="max-height:260px;overflow-y:auto;-webkit-overflow-scrolling:touch;margin-top:4px">';
-names().forEach(function(n){var cb=catBan(n);
-h+='<label style="display:flex;gap:10px;align-items:center;margin:6px 0;cursor:pointer"><input type="checkbox" data-x="'+n.replace(/"/g,'&quot;')+'"'+(banned(n)?' checked':'')+(cb?' disabled':'')+' style="width:18px;height:18px;margin:0;flex:none"><span style="font-size:14px">'+n.replace(/</g,'&lt;')+'</span></label>'});
-h+='</div></details><div class="bkm" id="limn"></div>';box.innerHTML=h;
+h+='<div class="bkm" id="limn"></div>';box.innerHTML=h;
 var k=cnt(),ln=document.getElementById('limn');if(k){ln.innerHTML='<button type="button" id="limb" style="width:auto;margin:0;padding:6px 0;background:none;border:0;box-shadow:none;color:var(--acc);text-decoration:underline;font:inherit;cursor:pointer"></button>';document.getElementById('limb').textContent='Исключено упражнений: '+k}}
 function showEx(){var old=document.getElementById('lpop');if(old)old.remove();var ov=document.createElement('div');ov.id='lpop';ov.style.cssText='position:fixed;left:0;top:0;right:0;bottom:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.4)';
 var li=names().filter(banned).map(function(n){var s=sub(n);return '<div style="padding:7px 0;border-bottom:1px solid rgba(128,128,128,.2);font-size:14px">'+n.replace(/</g,'&lt;')+(s?' <span class="meta">→ '+s+'</span>':'')+'</div>'}).join('');
@@ -552,7 +549,7 @@ function filt(o){var r={};for(var g in o){var b=o[g].b.filter(function(x){return
 if(gone.length||rp.length){c.it=out;var nt=[];if(rp.length)nt.push('Заменено из-за травм и ограничений: '+rp.join(', ')+'.');if(gone.length)nt.push('Убрано из-за травм и ограничений: '+gone.join(', ')+'.');c.note=(c.note?c.note+' ':'')+nt.join(' ');save();render()}}});
 var gear=document.getElementById('gear');if(gear)gear.addEventListener('click',build);build();
 })();</script>
-<script>var BUILD='20261114001732';(function(){var last=0;function chk(){var n=Date.now();if(n-last<30000)return;last=n;if(S&&S.cur&&S.cur.t0)return;try{fetch('version.json?t='+n,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.b||j.b==BUILD)return;var k='gym_try';if(sessionStorage.getItem(k)==j.b)return;sessionStorage.setItem(k,j.b);location.replace(location.pathname+'?v='+j.b)}).catch(function(){})}catch(e){}}
+<script>var BUILD='20261114002135';(function(){var last=0;function chk(){var n=Date.now();if(n-last<30000)return;last=n;if(S&&S.cur&&S.cur.t0)return;try{fetch('version.json?t='+n,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.b||j.b==BUILD)return;var k='gym_try';if(sessionStorage.getItem(k)==j.b)return;sessionStorage.setItem(k,j.b);location.replace(location.pathname+'?v='+j.b)}).catch(function(){})}catch(e){}}
 document.addEventListener('visibilitychange',function(){if(!document.hidden)chk()});window.addEventListener('load',function(){setTimeout(chk,1500)})})();</script>
 </body>
 </html>
