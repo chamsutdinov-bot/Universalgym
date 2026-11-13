@@ -567,7 +567,23 @@ var lg=document.querySelector('.top .logo');if(lg){lg.style.cursor='pointer';lg.
 var g0=GEN();if(!g0&&S.cur)g0=isWp(S.cur.p)?'w':'m';
 if(g0){GSEL=g0;try{sessionStorage.setItem('gym_g',g0)}catch(e){}apply(g0)}else{render();gt.hidden=false}
 })();</script>
-<script>var BUILD='20261114002603';(function(){var last=0;function chk(){var n=Date.now();if(n-last<30000)return;last=n;if(S&&S.cur&&S.cur.t0)return;try{fetch('version.json?t='+n,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.b||j.b==BUILD)return;var k='gym_try';if(sessionStorage.getItem(k)==j.b)return;sessionStorage.setItem(k,j.b);location.replace(location.pathname+'?v='+j.b)}).catch(function(){})}catch(e){}}
+<style>
+#rpan,#pan{padding:10px 12px;width:min(370px,calc(100vw - 40px));max-height:calc(100dvh - 32px)}
+@media (min-width:700px){#rpan,#pan{width:min(400px,calc(100vw - 40px))}}
+#rpan .seg{gap:5px;margin:0 0 4px!important}#rpan .seg button{padding:6px 4px;font-size:14px;border-radius:10px}
+#rpan .rnav{margin:4px 0}#rpan .rnav button{width:30px;height:30px;font-size:16px}
+#rpan .tiles{gap:6px;margin:6px 0}#rpan .tile{padding:6px 10px;border-radius:10px}#rpan .tile b{font-size:17px}#rpan .tile span{font-size:11px}
+#rpan .bars{height:64px;margin-top:2px}#rpan .meta{font-size:11px}
+#rpan .card>div:first-child{margin-bottom:4px!important}
+#rcl,#qcl{padding:4px 12px;font-size:13px}
+#pan>div:first-child .pcl,#pcl{padding:4px 12px!important;font-size:13px}
+#lpop{padding:12px!important}#lpop .card{width:min(320px,100%)!important;padding:10px 12px!important}#lpop .card>div:first-child{margin-bottom:4px!important}#lpop .card>div:first-child>div{font-size:15px!important}#lpop .card button{padding:4px 12px!important;font-size:13px}
+#pgi .seg{margin:2px 0 8px;gap:5px}#pgi .seg button{padding:7px 4px;font-size:14px;border-radius:10px}
+#pgi .card{padding:10px 12px;margin:8px 0}#pgi .card .meta{margin-bottom:6px!important;font-size:12px}
+#pgi .btn{padding:10px;font-size:15px;border-radius:12px;margin:0}
+#pgi .err{min-height:0;margin:4px 0 0;font-size:12px}
+</style>
+<script>var BUILD='20261114002903';(function(){var last=0;function chk(){var n=Date.now();if(n-last<30000)return;last=n;if(S&&S.cur&&S.cur.t0)return;try{fetch('version.json?t='+n,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.b||j.b==BUILD)return;var k='gym_try';if(sessionStorage.getItem(k)==j.b)return;sessionStorage.setItem(k,j.b);location.replace(location.pathname+'?v='+j.b)}).catch(function(){})}catch(e){}}
 document.addEventListener('visibilitychange',function(){if(!document.hidden)chk()});window.addEventListener('load',function(){setTimeout(chk,1500)})})();</script>
 </body>
 </html>
