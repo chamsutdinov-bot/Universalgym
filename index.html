@@ -515,8 +515,8 @@ document.addEventListener('touchmove',function(e){if(y0===null||ind.classList.co
 function end(){if(y0!==null&&pull>TH){ind.style.opacity=1;ind.style.transform='';ind.classList.add('go');setTimeout(function(){location.reload()},250)}else{ind.style.opacity=0;ind.style.transform='translateY(-60px)'}y0=null;pull=0}
 document.addEventListener('touchend',end,{passive:true});document.addEventListener('touchcancel',end,{passive:true})})();</script>
 <script>(function(){
-var CATS=[['back','Спина и поясница','приседания → «колодец», становая и тяги в наклоне заменяются'],['knees','Колени','приседания → «колодец»; выпады, прыжки и разгибание ног убираются'],['shoulders','Плечи','жимы, отжимания, разведения, подтягивания']];
-var RX={back:/присед|станов|румынск|мёртвая тяга|в наклоне/i,knees:/присед|выпад|разгибание ног|жим ногами|прыж|бёрпи|скакалк|болгарск/i,shoulders:/жим|отжиман|разведен|бабочка|шраг|подтягив|брусья/i};
+var CATS=[['back','Спина и поясница','приседания → «колодец», становая и тяги в наклоне заменяются']];
+var RX={back:/присед|станов|румынск|мёртвая тяга|в наклоне/i};
 function L(){if(!S.lim)S.lim={c:[],x:[]};return S.lim}
 function catBan(n){var l=S.lim;if(!l||/колодец/i.test(n))return false;for(var i=0;i<l.c.length;i++)if(RX[l.c[i]]&&RX[l.c[i]].test(n))return true;return false}
 function banned(n){var l=S.lim;if(!l)return false;return l.x.indexOf(n)>=0||catBan(n)}
@@ -532,7 +532,7 @@ function build(){var box=document.getElementById('lim');if(!box)return;var l=L()
 var h='<div style="font-weight:600;margin:16px 0 0">Травмы и ограничения</div><div class="bkm">Отмеченное пропадёт из твоих тренировок.</div>';
 CATS.forEach(function(c){h+='<label style="display:flex;gap:10px;align-items:flex-start;margin:8px 0;cursor:pointer"><input type="checkbox" data-c="'+c[0]+'"'+(l.c.indexOf(c[0])>=0?' checked':'')+' style="width:20px;height:20px;margin:1px 0 0;flex:none"><span><b style="font-weight:600">'+c[1]+'</b><br><span class="meta">'+c[2]+'</span></span></label>'});
 h+='<details style="margin-top:8px"><summary style="cursor:pointer;font-weight:600;font-size:14px;padding:6px 0">Отдельные упражнения</summary><div style="max-height:260px;overflow-y:auto;-webkit-overflow-scrolling:touch;margin-top:4px">';
-names().forEach(function(n){var cb=RX.back.test(n)&&l.c.indexOf('back')>=0||RX.knees.test(n)&&l.c.indexOf('knees')>=0||RX.shoulders.test(n)&&l.c.indexOf('shoulders')>=0;
+names().forEach(function(n){var cb=catBan(n);
 h+='<label style="display:flex;gap:10px;align-items:center;margin:6px 0;cursor:pointer"><input type="checkbox" data-x="'+n.replace(/"/g,'&quot;')+'"'+(banned(n)?' checked':'')+(cb?' disabled':'')+' style="width:18px;height:18px;margin:0;flex:none"><span style="font-size:14px">'+n.replace(/</g,'&lt;')+'</span></label>'});
 h+='</div></details><div class="bkm" id="limn"></div>';box.innerHTML=h;
 var k=cnt(),ln=document.getElementById('limn');if(k){ln.innerHTML='<button type="button" id="limb" style="width:auto;margin:0;padding:6px 0;background:none;border:0;box-shadow:none;color:var(--acc);text-decoration:underline;font:inherit;cursor:pointer"></button>';document.getElementById('limb').textContent='Исключено упражнений: '+k}}
@@ -552,7 +552,7 @@ function filt(o){var r={};for(var g in o){var b=o[g].b.filter(function(x){return
 if(gone.length||rp.length){c.it=out;var nt=[];if(rp.length)nt.push('Заменено из-за травм и ограничений: '+rp.join(', ')+'.');if(gone.length)nt.push('Убрано из-за травм и ограничений: '+gone.join(', ')+'.');c.note=(c.note?c.note+' ':'')+nt.join(' ');save();render()}}});
 var gear=document.getElementById('gear');if(gear)gear.addEventListener('click',build);build();
 })();</script>
-<script>var BUILD='20261114001618';(function(){var last=0;function chk(){var n=Date.now();if(n-last<30000)return;last=n;if(S&&S.cur&&S.cur.t0)return;try{fetch('version.json?t='+n,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.b||j.b==BUILD)return;var k='gym_try';if(sessionStorage.getItem(k)==j.b)return;sessionStorage.setItem(k,j.b);location.replace(location.pathname+'?v='+j.b)}).catch(function(){})}catch(e){}}
+<script>var BUILD='20261114001732';(function(){var last=0;function chk(){var n=Date.now();if(n-last<30000)return;last=n;if(S&&S.cur&&S.cur.t0)return;try{fetch('version.json?t='+n,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.b||j.b==BUILD)return;var k='gym_try';if(sessionStorage.getItem(k)==j.b)return;sessionStorage.setItem(k,j.b);location.replace(location.pathname+'?v='+j.b)}).catch(function(){})}catch(e){}}
 document.addEventListener('visibilitychange',function(){if(!document.hidden)chk()});window.addEventListener('load',function(){setTimeout(chk,1500)})})();</script>
 </body>
 </html>
