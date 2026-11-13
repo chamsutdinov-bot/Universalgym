@@ -512,5 +512,7 @@ s.addEventListener('touchstart',function(e){y0=(s.scrollTop<=0&&e.touches.length
 s.addEventListener('touchmove',function(e){if(y0===null||ind.classList.contains('go'))return;var d=e.touches[0].clientY-y0;if(d>0&&s.scrollTop<=0){pull=d;ind.style.opacity=Math.min(1,d/TH);ind.style.transform='translateY('+(Math.min(d,TH*1.6)*.55-60+36)+'px) rotate('+(d*4)+'deg)'}else{pull=0;ind.style.opacity=0}},{passive:true});
 function end(){if(y0!==null&&pull>TH){ind.style.opacity=1;ind.style.transform='';ind.classList.add('go');setTimeout(function(){location.reload()},250)}else{ind.style.opacity=0;ind.style.transform='translateY(-60px)'}y0=null;pull=0}
 s.addEventListener('touchend',end,{passive:true});s.addEventListener('touchcancel',end,{passive:true})})();</script>
+<script>var BUILD='20261113230737';(function(){var last=0;function chk(){var n=Date.now();if(n-last<30000)return;last=n;if(S&&S.cur&&S.cur.t0)return;try{fetch('version.json?t='+n,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.b||j.b==BUILD)return;var k='gym_try';if(sessionStorage.getItem(k)==j.b)return;sessionStorage.setItem(k,j.b);location.replace(location.pathname+'?v='+j.b)}).catch(function(){})}catch(e){}}
+document.addEventListener('visibilitychange',function(){if(!document.hidden)chk()});window.addEventListener('load',function(){setTimeout(chk,1500)})})();</script>
 </body>
 </html>
