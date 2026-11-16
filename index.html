@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Universal Gym</title><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>html,body{margin:0;height:100%;background:#16191d;color:#e9edf1;font:16px -apple-system,system-ui,sans-serif}
+body{display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box}
+a{display:inline-block;margin-top:18px;padding:14px 22px;border-radius:14px;background:#2c5b86;color:#fff;text-decoration:none;font-weight:600}</style>
+</head><body><div><b>Universal Gym переехал</b><br>Новый адрес: universalgym.github.io<br><a id="go" href="https://universalgym.github.io/">Открыть приложение</a></div>
+<script>/* мост: переносит журнал, язык, фон и покупку на новый адрес */
+(function(){var NEW='https://universalgym.github.io/',d={},n=0;
+['trenirovki_v1','trenirovki_lang','trenirovki_bg','ug_lic3','uw_lic3'].forEach(function(k){try{var v=localStorage.getItem(k);if(v!=null){d[k]=v;n++}}catch(e){}});
+var u=NEW;if(n){try{u+='#ugimp='+btoa(unescape(encodeURIComponent(JSON.stringify(d)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}catch(e){}}
+document.getElementById('go').href=u;location.replace(u)})();</script>
+</body></html>
